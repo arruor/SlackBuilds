@@ -7,3 +7,9 @@ if [ -e usr/share/icons/hicolor/icon-theme.cache ]; then
     /usr/bin/gtk-update-icon-cache -f usr/share/icons/hicolor >/dev/null 2>&1
   fi
 fi
+
+DEST="/bin/warp-terminal"
+
+if [ ! -L ${DEST} -a ! -e ${DEST} ]; then
+  /usr/bin/ln -s /opt/warpdotdev/warp-terminal/warp ${DEST}
+fi
