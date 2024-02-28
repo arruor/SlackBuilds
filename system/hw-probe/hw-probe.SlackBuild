@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Slackware build script for diff-so-fancy
+# Slackware build script for hw-probe
 
 # Copyright 2024  Dimitar Nikov, Alfreton, United Kingdom
 # All rights reserved.
@@ -48,12 +48,12 @@ set -e
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-tar xvf $CWD/$VERSION.tar.gz $PRGNAM-$VERSION/hw-probe.pl
+tar xvf $CWD/$VERSION.tar.gz $PRGNAM-$VERSION/$PRGNAM.pl
 cd $PRGNAM-$VERSION
 
 mkdir -p $PKG/usr/bin
-chmod 0755 hw-probe.pl
-mv hw-probe.pl $PKG/usr/bin/hw-probe
+chmod 0755 $PRGNAM.pl
+mv $PRGNAM.pl $PKG/usr/bin/$PRGNAM
 
 chown -R root:root .
 find -L . \
@@ -66,8 +66,8 @@ mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/usr/man/man1
-help2man -n hw-probe -s 1 $PKG/usr/bin/hw-probe -o $PKG/usr/man/man1/hw-probe.1
-gzip -9 $PKG/usr/man/man1/hw-probe.1
+help2man -n $PRGNAM -s 1 $PKG/usr/bin/${PRGNAM} -o $PKG/usr/man/man1/${PRGNAM}.1
+gzip -9 $PKG/usr/man/man1/${PRGNAM}.1
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
